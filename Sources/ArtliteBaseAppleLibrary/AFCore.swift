@@ -9,10 +9,10 @@ import Foundation
 
 
 /// Core class for the artlite framework
-@objc class AFCore: NSObject {
+@objc public class AFCore: NSObject {
     
     /// Method which provide the print hello
-    @objc static func printHello() {
+    @objc public static func printHello() {
         NSLog("%@", "Hello AFCore")
     }
     
