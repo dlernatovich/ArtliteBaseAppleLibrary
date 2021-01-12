@@ -16,7 +16,7 @@ import UIKit
     @objc func afDialog(
         title: String,
         message: String,
-        closeButton: String,
+        closeButton: String
     ){
         self.show(style: .alert, title: title, message: message, closeButton: closeButton, closeButtonStyle: .default, customization: nil);
     }
@@ -36,7 +36,7 @@ import UIKit
     @objc func afActionSheet(
         title: String?,
         message: String,
-        closeButton: String,
+        closeButton: String
     ){
         self.show(style: .actionSheet, title: title, message: message, closeButton: closeButton, closeButtonStyle: .default, customization: nil);
     }
