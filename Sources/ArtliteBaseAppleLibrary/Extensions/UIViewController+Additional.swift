@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 /// Extension for the {@link UIViewController}
-@objc public extension UIViewController {
+@objc internal extension UIViewController {
     
     /// Method which provide the getting of the top most visible controller
     /// - Returns: instance of the {@link UIViewController}
-    @objc public func getVisibleController() -> UIViewController? {
+    @objc func getVisibleController() -> UIViewController? {
             if self.presentedViewController == nil {
                 return self
             }
@@ -29,6 +29,19 @@ import UIKit
             }
             return self.presentedViewController?.getVisibleController()
         }
+    
+}
+
+/// Extension for the {@link UIViewController}
+@objc public extension UIViewController {
+    
+    /// Method which provide the getting of the top most visible controller
+    /// - Returns: instance of the {@link UIViewController}
+    @objc override var afVisibleController: UIViewController? {
+        get {
+            return self.getVisibleController()
+        }
+    }
     
 }
 
