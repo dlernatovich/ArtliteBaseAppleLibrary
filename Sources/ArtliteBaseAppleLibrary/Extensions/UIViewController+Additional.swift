@@ -14,7 +14,7 @@ import UIKit
     
     /// Method which provide the getting of the top most visible controller
     /// - Returns: instance of the {@link UIViewController}
-    @objc func getVisibleController() -> UIViewController? {
+    @objc public func getVisibleController() -> UIViewController? {
             if self.presentedViewController == nil {
                 return self
             }
