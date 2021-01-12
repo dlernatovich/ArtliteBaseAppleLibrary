@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "ArtliteBaseAppleLibrary",
+    name: "Artlite Base iOS Library",
     platforms: [
             .iOS(.v11)
         ],
