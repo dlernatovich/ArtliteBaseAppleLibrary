@@ -14,8 +14,10 @@ import UIKit
     
     /// Method which provide the getting of the top most visible controller
     /// - Returns: instance of the {@link UIViewController}
-    @objc public func getVisibleController() -> UIViewController? {
-        return UIApplication.shared.keyWindow?.rootViewController?.getVisibleController()
+    @objc var visibleController: UIViewController? {
+        get {
+            return UIApplication.shared.keyWindow?.rootViewController?.getVisibleController()
+        }
     }
     
 }
