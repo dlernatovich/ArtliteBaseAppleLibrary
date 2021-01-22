@@ -1,3 +1,4 @@
-# ArtliteBaseAppleLibrary
+# ABSLibrary
 
-A description of this package.
+## Description
+Library which provide the additional functional for the iOS project.

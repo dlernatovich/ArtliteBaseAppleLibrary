@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ABSLibrary",
+        "repositoryURL": "https://github.com/dlernatovich/ArtliteBaseAppleLibrary.git",
+        "state": {
+          "branch": null,
+          "revision": "92c2dc8326afa2065a1699dbf0177174b63c4408",
+          "version": "0.0.53"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

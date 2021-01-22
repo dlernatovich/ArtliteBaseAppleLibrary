@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Artlite Base iOS Library",
+    name: "ABSLibrary",
     platforms: [
             .iOS(.v11)
         ],
@@ -23,7 +23,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "ArtliteBaseAppleLibrary",
-            dependencies: []),
+            dependencies: [],
+            resources:[.process("AFDialogController.xib"), .process("AFModalController.xib")]),
         .testTarget(
             name: "ArtliteBaseAppleLibraryTests",
             dependencies: ["ArtliteBaseAppleLibrary"]),
