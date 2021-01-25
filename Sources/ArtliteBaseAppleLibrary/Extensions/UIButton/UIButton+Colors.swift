@@ -15,6 +15,13 @@ import UIKit
     /// Method which provide the set color as background.
     /// - Parameters:
     ///   - color: instance.
+    @objc func setBackgroundColor(color: UIColor) {
+        for state in UIControl.State.allStates { setBackgroundColor(color: color, forState: state) }
+    }
+    
+    /// Method which provide the set color as background.
+    /// - Parameters:
+    ///   - color: instance.
     ///   - forState: state for button.
     @objc func setBackgroundColor(color: UIColor, forState: UIControl.State) {
         self.clipsToBounds = true  // add this to maintain corner radius
