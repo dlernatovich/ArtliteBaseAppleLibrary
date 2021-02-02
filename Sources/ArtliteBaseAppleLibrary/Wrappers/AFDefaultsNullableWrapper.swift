@@ -19,6 +19,15 @@ public struct AFDefaultsNullableWrapper<Value> {
     /// Storage defaults
     public var storage: UserDefaults = .standard;
     
+    /// Default constructor
+    /// - Parameters:
+    ///   - key: key value
+    ///   - storage: storage for save
+    public init(key: String, storage: UserDefaults = .standard) {
+        self.key = key
+        self.storage = storage
+    }
+    
     /// Wrapped value
     public var wrappedValue: Value? {
         get { storage.value(forKey: key) as? Value }

@@ -27,6 +27,17 @@ public struct AFFileWrapper<Value: Codable> {
     /// Format
     public var fileType: AFFileType = .JSON;
     
+    /// Default constructor.
+    /// - Parameters:
+    ///   - fileName: file name definer
+    ///   - folderName: folder name definer
+    ///   - fileType: file type
+    init(fileName: @escaping () -> String?, folderName: (() -> String?)? = nil, fileType: AFFileType = .JSON) {
+        self.fileName = fileName
+        self.folderName = folderName
+        self.fileType = fileType
+    }
+    
     /// Full path value
     private var fullPath: String {
         if let folderName = folderName?() {
