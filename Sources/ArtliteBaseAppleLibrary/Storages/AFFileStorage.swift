@@ -8,12 +8,12 @@
 import UIKit
 
 /// Handler
-typealias Handler<T> = (Result<T, Error>) -> Void;
+public typealias Handler<T> = (Result<T, Error>) -> Void;
 /// Storage typealias
-typealias Storage = ReadableStorage & WritableStorage;
+public typealias Storage = ReadableStorage & WritableStorage;
 
 /// Redable storage
-protocol ReadableStorage {
+public protocol ReadableStorage {
     /// Method which provide the fetch functional
     /// - Parameter key: value
     func fetchValue(for key: String) throws -> Data;
@@ -25,7 +25,7 @@ protocol ReadableStorage {
 }
 
 /// Writable storage
-protocol WritableStorage {
+public protocol WritableStorage {
     /// Method which provide the save functional
     /// - Parameters:
     ///   - value: data
@@ -40,7 +40,7 @@ protocol WritableStorage {
 }
 
 /// Storage error
-enum StorageError: Error {
+public enum StorageError: Error {
     /// Not found error
     case notFound;
     /// Can write error
@@ -48,7 +48,7 @@ enum StorageError: Error {
 }
 
 /// Disc cache storage
-class DiskStorage {
+public class DiskStorage {
     /// Instance of the {@link DispatchQueue}
     private let queue: DispatchQueue;
     /// Instance of the {@link FileManager}
@@ -76,7 +76,7 @@ extension DiskStorage: WritableStorage {
     /// - Parameters:
     ///   - value: data
     ///   - key: value
-    func save(value: Data, for key: String) throws {
+    public func save(value: Data, for key: String) throws {
         let url = path.appendingPathComponent(key);
         do {
             try self.createFolders(in: url);
@@ -90,7 +90,7 @@ extension DiskStorage: WritableStorage {
     ///   - value: date
     ///   - key: value
     ///   - handler: callback
-    func save(value: Data, for key: String, handler: @escaping Handler<Data>) {
+    public func save(value: Data, for key: String, handler: @escaping Handler<Data>) {
         queue.async {
             do {
                 try self.save(value: value, for: key);
@@ -103,7 +103,7 @@ extension DiskStorage: WritableStorage {
 }
 
 /// Create folder extension
-extension DiskStorage {
+public extension DiskStorage {
     /// Create folder functional
     /// - Parameter url: url path
     private func createFolders(in url: URL) throws {
@@ -118,7 +118,7 @@ extension DiskStorage {
 extension DiskStorage: ReadableStorage {
     /// Method which provide the fetch functional
     /// - Parameter key: value
-    func fetchValue(for key: String) throws -> Data {
+    public func fetchValue(for key: String) throws -> Data {
         let url = path.appendingPathComponent(key);
         guard let data = fileManager.contents(atPath: url.path) else {
             throw StorageError.notFound;
@@ -129,7 +129,7 @@ extension DiskStorage: ReadableStorage {
     /// - Parameters:
     ///   - key: value
     ///   - handler: callback
-    func fetchValue(for key: String, handler: @escaping Handler<Data>) {
+    public func fetchValue(for key: String, handler: @escaping Handler<Data>) {
         queue.async {
             handler(Result { try self.fetchValue(for: key) });
         }
@@ -137,7 +137,7 @@ extension DiskStorage: ReadableStorage {
 }
 
 /// Coddable storage
-class CodableStorage {
+public class CodableStorage {
     /// Instance of the {@link DiskStorage}
     private let storage: DiskStorage;
     /// Instance of the {@link JSONDecoder}

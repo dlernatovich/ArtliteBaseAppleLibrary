@@ -14,10 +14,10 @@ import Foundation
 public struct AFDefaultsNullableWrapper<Value> {
     
     /// Key value
-    let key: String;
+    public let key: String;
     
     /// Storage defaults
-    var storage: UserDefaults = .standard;
+    public var storage: UserDefaults = .standard;
     
     /// Wrapped value
     public var wrappedValue: Value? {

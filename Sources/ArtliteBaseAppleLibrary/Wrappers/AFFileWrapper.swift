@@ -19,13 +19,13 @@ public enum AFFileType: String {
 public struct AFFileWrapper<Value: Codable> {
     
     /// Folder name
-    var folderName: (() -> String?)? = nil;
+    public var folderName: (() -> String?)? = nil;
     
     ///file name
-    var fileName: () -> String?;
+    public var fileName: () -> String?;
     
     /// Format
-    var fileType: AFFileType = .JSON;
+    public var fileType: AFFileType = .JSON;
     
     /// Full path value
     private var fullPath: String {

@@ -12,13 +12,13 @@ import Foundation
 public struct AFDefaultsNonnullableWrapper<Value> {
     
     /// Key value
-    let key: String;
+    public let key: String;
     
     /// Default value
-    let defaultValue: Value;
+    public let defaultValue: Value;
     
     /// Storage defaults
-    var storage: UserDefaults = .standard;
+    public var storage: UserDefaults = .standard;
     
     /// Wrapped value
     public var wrappedValue: Value {
