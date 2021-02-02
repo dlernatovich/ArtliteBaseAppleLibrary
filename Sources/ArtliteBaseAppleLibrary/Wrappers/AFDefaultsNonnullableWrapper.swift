@@ -17,26 +17,45 @@ public struct AFDefaultsNonnullableWrapper<Value> {
     /// Default value
     public let defaultValue: Value;
     
+    // Read rule
+    public var read: AFWrapperRead<Value>? = nil
+    
+    /// Save rule
+    public var write: AFWrapperWrite<Value>? = nil
+    
     /// Storage defaults
     public var storage: UserDefaults = .standard;
     
     
-    /// Default constructor
+    /// Default constructor.
     /// - Parameters:
     ///   - key: value
     ///   - defaultValue: default value
     ///   - storage: storage for saving
-    public init(key: String, defaultValue: Value, storage: UserDefaults = .standard) {
+    ///   - read: read rule
+    ///   - write: write rule
+    public init(key: String, defaultValue: Value, storage: UserDefaults = .standard, read: AFWrapperRead<Value>? = nil, write: AFWrapperWrite<Value>? = nil) {
         self.key = key
         self.defaultValue = defaultValue
         self.storage = storage
+        self.read = read
+        self.write = write
     }
     
     /// Wrapped value
     public var wrappedValue: Value {
-        get { storage.value(forKey: key) as? Value ?? defaultValue }
+        get {
+            if let read = read {
+                return read(storage, key) ?? defaultValue
+            }
+            return storage.value(forKey: key) as? Value ?? defaultValue
+        }
         set {
-            storage.setValue(newValue, forKey: key);
+            if let write = write {
+                write(storage, key, newValue)
+            } else {
+                storage.setValue(newValue, forKey: key)
+            }
         }
     }
 }

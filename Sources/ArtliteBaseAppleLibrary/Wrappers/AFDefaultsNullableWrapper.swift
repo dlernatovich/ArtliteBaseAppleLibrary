@@ -16,6 +16,12 @@ public struct AFDefaultsNullableWrapper<Value> {
     /// Key value
     public let key: String;
     
+    // Read rule
+    public var read: AFWrapperRead<Value>? = nil
+    
+    /// Save rule
+    public var write: AFWrapperWrite<Value>? = nil
+    
     /// Storage defaults
     public var storage: UserDefaults = .standard;
     
@@ -23,19 +29,32 @@ public struct AFDefaultsNullableWrapper<Value> {
     /// - Parameters:
     ///   - key: key value
     ///   - storage: storage for save
-    public init(key: String, storage: UserDefaults = .standard) {
+    ///   - read: read rule
+    ///   - write: write rule
+    public init(key: String, storage: UserDefaults = .standard, read: AFWrapperRead<Value>? = nil, write: AFWrapperWrite<Value>? = nil) {
         self.key = key
         self.storage = storage
+        self.read = read
+        self.write = write
     }
     
     /// Wrapped value
     public var wrappedValue: Value? {
-        get { storage.value(forKey: key) as? Value }
+        get {
+            if let read = read {
+                return read(storage, key)
+            }
+            return storage.value(forKey: key) as? Value
+        }
         set {
-            if (newValue == nil) {
-                storage.removeObject(forKey: key);
+            guard let newValue = newValue else {
+                storage.removeObject(forKey: key)
+                return
+            }
+            if let write = write {
+                write(storage, key, newValue)
             } else {
-                storage.setValue(newValue, forKey: key);
+                storage.setValue(newValue, forKey: key)
             }
         }
     }
