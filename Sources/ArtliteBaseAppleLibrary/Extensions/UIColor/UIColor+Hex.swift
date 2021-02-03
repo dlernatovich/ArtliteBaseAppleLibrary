@@ -15,7 +15,7 @@ public extension UIColor {
     /// Constructor which provide to create color from hex.
     /// - Parameter hex: {@link String} value of hex.
     convenience init?(hex: String) {
-        let r, g, b, a: CGFloat
+        let r, g, b: CGFloat
         if hex.hasPrefix("#") {
             let start = hex.index(hex.startIndex, offsetBy: 1)
             let hexColor = String(hex[start...])
