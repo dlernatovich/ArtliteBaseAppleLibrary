@@ -433,7 +433,7 @@
 			repositoryURL = "https://github.com/dlernatovich/ArtliteBaseAppleLibrary.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.53;
+				minimumVersion = 0.0.90;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

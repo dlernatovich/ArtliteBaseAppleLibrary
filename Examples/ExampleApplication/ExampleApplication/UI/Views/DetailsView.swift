@@ -11,12 +11,22 @@ import ArtliteBaseAppleLibrary
 
 class DetailsView: AFView, AFModalProtocol {
     
-    var view: UIView { return self.contentView }
     
-    var type: AFModelType { return .dark }
+    
+    
+    var modalView: UIView { return self.contentView }
+    
+    var type: AFModalType { return .dark }
     
     func onCloseModal() {
         
+    }
+    
+    func onDialogCreated(dialogType: AFDialogType) {
+        
+    }
+    
+    func onTrainColletionChanged() {
     }
     
     
