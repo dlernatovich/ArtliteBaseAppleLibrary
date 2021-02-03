@@ -9,21 +9,22 @@ import Foundation
 #if os(iOS)
 import UIKit
 
-// MARK: - Notification
+// MARK: - Color (Objective C)
 @objc public extension NSString {
     
-    /// Image of the string value
+    /// UIColor from name
     @objc var afColor: UIColor? { return UIColor(named: self as String) }
     
 }
 
-// MARK: - Notification
+// MARK: - Color (Swift)
 public extension String {
     
-    /// Image of the string value
-    var afColor: UIColor? {
-        return UIColor(named: self)
-    }
+    /// UIColor from name
+    var afColor: UIColor? { UIColor(named: self) }
+    
+    /// UIColor from hex string
+    var afHexColor: UIColor? { UIColor(hex: self) }
     
 }
 #endif
