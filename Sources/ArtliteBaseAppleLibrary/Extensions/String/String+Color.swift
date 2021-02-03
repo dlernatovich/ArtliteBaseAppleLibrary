@@ -13,7 +13,10 @@ import UIKit
 @objc public extension NSString {
     
     /// UIColor from name
-    @objc var afColor: UIColor? { return UIColor(named: self as String) }
+    @objc var afColor: UIColor? { UIColor(named: self as String) }
+    
+    /// UIColor from hex string
+    @objc var afHexColor: UIColor? { UIColor(hex: self as String) }
     
 }
 
