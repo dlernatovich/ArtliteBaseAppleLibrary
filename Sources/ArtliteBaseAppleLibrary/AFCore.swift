@@ -14,6 +14,7 @@ import Foundation
     /// Method which provide the print hello
     @objc public static func printHello() {
         NSLog("%@", "Hello AFCore")
+        // Code
     }
     
 }
