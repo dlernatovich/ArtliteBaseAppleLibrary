@@ -27,7 +27,7 @@ import UIKit
         message: String,
         closeButton: String,
         closeButtonStyle: UIAlertAction.Style = .default,
-        customization: ((_ controller: UIAlertController) -> Void)? = nil
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)? = nil
     ){
         AFDialogHelper.show(owner: self,style: .alert, title: title, message: message, closeButton: closeButton, closeButtonStyle: closeButtonStyle, customization: customization)
     }
@@ -47,7 +47,7 @@ import UIKit
         message: String,
         closeButton: String,
         closeButtonStyle: UIAlertAction.Style = .default,
-        customization: ((_ controller: UIAlertController) -> Void)? = nil
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)? = nil
     ){
         AFDialogHelper.show(owner: self,style: .actionSheet, title: title, message: message, closeButton: closeButton, closeButtonStyle: closeButtonStyle, customization: customization)
     }

@@ -27,7 +27,7 @@ import UIKit
         message: String,
         closeButton: String,
         closeButtonStyle: UIAlertAction.Style = .default,
-        customization: ((_ controller: UIAlertController) -> Void)? = nil
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)? = nil
     ){
         show(style: .alert, title: title, message: message, closeButton: closeButton, closeButtonStyle: closeButtonStyle, customization: customization)
     }
@@ -47,7 +47,7 @@ import UIKit
         message: String,
         closeButton: String,
         closeButtonStyle: UIAlertAction.Style = .default,
-        customization: ((_ controller: UIAlertController) -> Void)? = nil
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)? = nil
     ){
         show(style: .actionSheet, title: title, message: message, closeButton: closeButton, closeButtonStyle: closeButtonStyle, customization: customization)
     }
@@ -66,7 +66,7 @@ import UIKit
         message: String,
         closeButton: String,
         closeButtonStyle: UIAlertAction.Style,
-        customization: ((_ controller: UIAlertController) -> Void)?
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)?
     ) {
         show(owner: nil, style: style, title: title, message: message, closeButton: closeButton, closeButtonStyle: closeButtonStyle, customization: customization)
     }
@@ -86,13 +86,13 @@ import UIKit
         message: String,
         closeButton: String,
         closeButtonStyle: UIAlertAction.Style,
-        customization: ((_ controller: UIAlertController) -> Void)?
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)?
     ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        alert.addAction(UIAlertAction(title: NSLocalizedString(closeButton, comment: ""), style: closeButtonStyle, handler: { (action) in
-            
-        }))
-        customization?(alert)
+        let closeAction = UIAlertAction(title: NSLocalizedString(closeButton, comment: ""), style: closeButtonStyle, handler: { (action) in
+        })
+        alert.addAction(closeAction)
+        customization?(alert, closeAction)
         (owner?.afVisibleController ?? AFControllerHelper.getVisibleController())?.present(alert, animated: true)
     }
     
