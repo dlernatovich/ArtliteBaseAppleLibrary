@@ -114,6 +114,30 @@ import UIKit
         closeButtonStyle: UIAlertAction.Style,
         customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)?
     ) {
+        let alert = create(style: style, title: title, titleFont: titleFont, message: message, messageFont: messageFont)
+        let closeAction = UIAlertAction(title: NSLocalizedString(closeButton, comment: ""), style: closeButtonStyle, handler: { (action) in
+        })
+        customization?(alert, closeAction)
+        alert.addAction(closeAction)
+        (owner?.afVisibleController ?? AFControllerHelper.getVisibleController())?.present(alert, animated: true)
+    }
+    
+    
+    /// Method which provide to create of the {@link UIAlertController}.
+    /// - Parameters:
+    ///   - style: value.
+    ///   - title: value.
+    ///   - titleFont: title font.
+    ///   - message: value.
+    ///   - messageFont: message font.
+    /// - Returns: instance of the {@link UIAlertController}
+    @objc public static func create(
+        style: UIAlertController.Style,
+        title: String?,
+        titleFont: UIFont?,
+        message: String,
+        messageFont: UIFont?
+    ) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         if let title = title, let titleFont = titleFont {
             alert.setValue(NSAttributedString(string: title, attributes: [NSAttributedString.Key.font : titleFont]), forKey: "attributedTitle")
@@ -121,11 +145,7 @@ import UIKit
         if let messageFont = messageFont {
             alert.setValue(NSAttributedString(string: message, attributes: [NSAttributedString.Key.font : messageFont]), forKey: "attributedMessage")
         }
-        let closeAction = UIAlertAction(title: NSLocalizedString(closeButton, comment: ""), style: closeButtonStyle, handler: { (action) in
-        })
-        customization?(alert, closeAction)
-        alert.addAction(closeAction)
-        (owner?.afVisibleController ?? AFControllerHelper.getVisibleController())?.present(alert, animated: true)
+        return alert
     }
     
 }
