@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Show functional.
-@objc extension UIAlertController {
+@objc public extension UIAlertController {
     
     /// Method which provide to show functional.
     func show() { AFControllerHelper.getVisibleController()?.present(self, animated: true) }
