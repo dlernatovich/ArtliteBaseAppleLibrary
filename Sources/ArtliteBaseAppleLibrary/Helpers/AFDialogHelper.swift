@@ -88,13 +88,46 @@ import UIKit
         closeButtonStyle: UIAlertAction.Style,
         customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)?
     ) {
+        show(owner: owner, style: style, title: title, titleFont: nil, message: message, messageFont: nil, closeButton: closeButton, closeButtonStyle: closeButtonStyle, customization: customization)
+    }
+    
+    
+    /// Method which provide the show alert dialog from any place.
+    /// - Parameters:
+    ///   - owner: instance.
+    ///   - style: alert style.
+    ///   - title: value.
+    ///   - titleFont: title font.
+    ///   - message: value.
+    ///   - messageFont: message font.
+    ///   - closeButton: close button text.
+    ///   - closeButtonStyle: close button style.
+    ///   - customization: customization callback.
+    @objc public static func show(
+        owner: NSObject?,
+        style: UIAlertController.Style,
+        title: String?,
+        titleFont: UIFont?,
+        message: String,
+        messageFont: UIFont?,
+        closeButton: String,
+        closeButtonStyle: UIAlertAction.Style,
+        customization: ((_ controller: UIAlertController, _ closeButton: UIAlertAction) -> Void)?
+    ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+        if let title = title, let titleFont = titleFont {
+            alert.setValue(NSAttributedString(string: title, attributes: [NSAttributedString.Key.font : titleFont]), forKey: "attributedTitle")
+        }
+        if let messageFont = messageFont {
+            alert.setValue(NSAttributedString(string: message, attributes: [NSAttributedString.Key.font : messageFont]), forKey: "attributedMessage")
+        }
         let closeAction = UIAlertAction(title: NSLocalizedString(closeButton, comment: ""), style: closeButtonStyle, handler: { (action) in
         })
-        alert.addAction(closeAction)
         customization?(alert, closeAction)
+        alert.addAction(closeAction)
         (owner?.afVisibleController ?? AFControllerHelper.getVisibleController())?.present(alert, animated: true)
     }
     
 }
+
 #endif
