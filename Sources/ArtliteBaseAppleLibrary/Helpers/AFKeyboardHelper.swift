@@ -14,13 +14,13 @@ import UIKit
     
     /// Hide keyboard from view
     /// - Parameter view: instance of the {@link UIView}
-    @objc static func hide() {
+    @objc public static func hide() {
         hide(view: AFControllerHelper.getVisibleController()?.view)
     }
     
     /// Hide keyboard from view
     /// - Parameter view: instance of the {@link UIView}
-    @objc static func hide(view: UIView?) {
+    @objc public static func hide(view: UIView?) {
         guard let view = view else { return }
         view.endEditing(true)
     }

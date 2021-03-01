@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 /// Animation helper
-@objc class AFAnimationHelper: NSObject {
+@objc public class AFAnimationHelper: NSObject {
     
     /// Method which provide the animation functional
     /// - Parameters:
     ///   - view: instance
     ///   - time: value
     ///   - action: callback
-    @objc static func animate(view: UIView?, time: TimeInterval, action: @escaping () -> Void) {
+    @objc public static func animate(view: UIView?, time: TimeInterval, action: @escaping () -> Void) {
         animate(view: view, time: time, action: action, complete: nil)
     }
     
@@ -26,7 +26,7 @@ import UIKit
     ///   - view: instance
     ///   - time: value
     ///   - action: callback
-    @objc static func animate(view: UIView?, time: TimeInterval, action: @escaping () -> Void, complete: (() -> Void)?) {
+    @objc public static func animate(view: UIView?, time: TimeInterval, action: @escaping () -> Void, complete: (() -> Void)?) {
         view?.layoutIfNeeded()
         UIView.animate(withDuration: time) {
             action()

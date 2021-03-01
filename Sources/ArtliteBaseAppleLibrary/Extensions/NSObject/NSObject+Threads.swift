@@ -19,8 +19,32 @@ import UIKit
     
     /// Method which provide the action on background
     /// - Parameter action: action vallback
+    @objc func afBackgroundThread(seconds: Int, action: @escaping () -> Void) {
+        AFThreadHelper.background(seconds: seconds, action: action)
+    }
+    
+    /// Method which provide the action on background
+    /// - Parameter action: action vallback
+    @objc func afBackgroundThread(milliseconds: Int, action: @escaping () -> Void) {
+        AFThreadHelper.background(milliseconds: milliseconds, action: action)
+    }
+    
+    /// Method which provide the action on background
+    /// - Parameter action: action vallback
     @objc func afMainThread(action: @escaping () -> Void) {
         AFThreadHelper.main(action: action)
+    }
+    
+    /// Method which provide the action on background
+    /// - Parameter action: action vallback
+    @objc func afMainThread(seconds: Int, action: @escaping () -> Void) {
+        AFThreadHelper.main(seconds: seconds, action: action)
+    }
+    
+    /// Method which provide the action on background
+    /// - Parameter action: action vallback
+    @objc func afMainThread(milliseconds: Int, action: @escaping () -> Void) {
+        AFThreadHelper.main(milliseconds: milliseconds, action: action)
     }
     
     /// Method which provide to execute of task.

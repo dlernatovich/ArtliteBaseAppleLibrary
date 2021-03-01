@@ -14,7 +14,7 @@ import UIKit
     
     /// Method which provide the getting of the key window
     /// - Returns: instance of the {@link UIWindow}
-    @objc static func getKeyWindow() -> UIWindow? { return UIApplication.shared.windows.first(where: {$0.isKeyWindow}) }
+    @objc public static func getKeyWindow() -> UIWindow? { return UIApplication.shared.windows.first(where: {$0.isKeyWindow}) }
     
 }
 #endif

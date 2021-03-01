@@ -16,7 +16,7 @@ import UIKit
     /// - Parameters:
     ///   - notification: type.
     ///   - info: information to send.
-    @objc static func send(notification: AFNotificationModel, info: [AnyHashable: Any]?) {
+    @objc public static func send(notification: AFNotificationModel, info: [AnyHashable: Any]?) {
         NotificationCenter.default.post(name: notification.name.afNotification, object: nil, userInfo: info)
     }
     
@@ -25,7 +25,7 @@ import UIKit
     ///   - owner: owner model.
     ///   - notification: notification type.
     ///   - selector: instance.
-    @objc static func subscribe(owner: Any, notification: AFNotificationModel, selector: Selector){
+    @objc public static func subscribe(owner: Any, notification: AFNotificationModel, selector: Selector){
         NotificationCenter.default.addObserver(
             owner,
             selector: selector,
@@ -35,7 +35,7 @@ import UIKit
     }
     
     /// Unsubscribe from notification.
-    @objc static func unsubscribe(owner: Any) {
+    @objc public static func unsubscribe(owner: Any) {
         NotificationCenter.default.removeObserver(owner)
     }
     

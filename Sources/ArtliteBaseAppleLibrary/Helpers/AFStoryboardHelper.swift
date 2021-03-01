@@ -17,7 +17,7 @@ import UIKit
     ///   - storyboard: storyboard name
     ///   - name: controller identifier
     @discardableResult
-    @objc static func show(
+    @objc public static func show(
         owner: UIViewController?,
         from storyboard: String?,
         and name: String?,
@@ -57,7 +57,7 @@ import UIKit
     ///   - storyboard: storyboard name
     ///   - name: controller identifier
     @discardableResult
-    @objc static func show(
+    @objc public static func show(
         owner: UIViewController?,
         detailsFrom storyboard: String?,
         and name: String?,
