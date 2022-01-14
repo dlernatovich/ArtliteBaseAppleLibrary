@@ -23,8 +23,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "ArtliteBaseAppleLibrary",
-            dependencies: [],
-            resources:[.process("AFDialogController.xib"), .process("AFModalController.xib")]),
+            dependencies: []//,
+//            resources:[.process("AFDialogController.xib"), .process("AFModalController.xib")]
+        ),
         .testTarget(
             name: "ArtliteBaseAppleLibraryTests",
             dependencies: ["ArtliteBaseAppleLibrary"]),
